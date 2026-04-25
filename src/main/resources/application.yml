@@ -20,31 +20,3 @@ spring:
 
 server:
   port: 9090
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-# spring:
-#   datasource:
-#     url: jdbc:postgresql://localhost:5433/grid07db
-#     username: postgres
-#     password: postgres
-
-#   jpa:
-#     hibernate:
-#       ddl-auto: update
-#     show-sql: true
-
-# server:
-#   port: 9090
