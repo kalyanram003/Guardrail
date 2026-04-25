@@ -31,9 +31,9 @@ App runs on `http://localhost:9090`
 
 | Method | Endpoint | Body | Expected |
 |---|---|---|---|
-| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Too deep", "depthLevel": 21}` | `429` — depth exceeded |
-| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Second attempt", "depthLevel": 1}` | `429` — bot on cooldown (run twice) |
-| POST | `/api/posts/{postId}/comments` | `{"authorId": 2, "authorType": "BOT", "targetHumanId": 1, "content": "Bot 2 reply", "depthLevel": 1}` | `200` — different bot, no cooldown |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Too deep", "depthLevel": 21}` | `429` —> depth exceeded |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Second attempt", "depthLevel": 1}` | `429` —> bot on cooldown (run twice) |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 2, "authorType": "BOT", "targetHumanId": 1, "content": "Bot 2 reply", "depthLevel": 1}` | `200` —> different bot, no cooldown |
 
 Base URL: `http://localhost:9090`
 
