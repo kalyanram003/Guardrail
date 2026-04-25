@@ -68,7 +68,9 @@ grid07-backend/
 └── README.md
 ```
 
-## Thread Safety — How Atomic Locks Work in Phase 2
+
+
+## Thread Safety (How Atomic Locks Work in Phase 2)
 
 There are three guardrails for bot comments. Each  has a concurrency problem and I solved each of it differently.
 
@@ -109,3 +111,6 @@ No Redis needed. The `depthLevel` comes in the request. A plain integer check (`
 
 `synchronized` only works within one JVM. If two instances of this service run behind a load balancer then each has its own lock they don't know about each other. Redis is the shared external state, so atomic operations will work correctly across all instances.
 
+
+## Architecture diagram
+<img width="1156" height="603" alt="Screenshot 2026-04-22 213634" src="https://github.com/user-attachments/assets/33104977-ccb7-44e7-bdde-1919371838ab" />
