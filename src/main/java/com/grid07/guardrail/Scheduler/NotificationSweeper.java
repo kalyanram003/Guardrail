@@ -39,7 +39,6 @@ public class NotificationSweeper {
             String botName = firstMessage.contains(" replied")
                 ? firstMessage.split(" replied")[0]
                 : "A bot";
-
             if (count == 1) {
                 log.info("Summarized Push Notification: {}", firstMessage);
             } else {
