@@ -1,18 +1,21 @@
 package com.grid07.guardrail.Service;
 
+import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
+import org.springframework.data.redis.core.RedisTemplate;
+import org.springframework.stereotype.Service;
+
 import java.time.Duration;
 
-import org.springframework.data.redis.core.RedisTemplate;
-
-import lombok.extern.slf4j.Slf4j;
-
+@Service
+@RequiredArgsConstructor
 @Slf4j
 public class NotificationService {
-    private final RedisTemplate<String, Object> redisTemplate = new RedisTemplate<String, Object>();
+
+    private final RedisTemplate<String, Object> redisTemplate;
 
     private static final long NOTIF_COOLDOWN_SECONDS = 900L;
 
-    // Handle bot interaction with a user
     public void handleBotInteraction(Long humanUserId, Long botId) {
         String cooldownKey  = "notif_cooldown:user_" + humanUserId;
         String pendingKey   = "user:" + humanUserId + ":pending_notifs";

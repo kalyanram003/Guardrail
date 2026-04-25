@@ -1,13 +1,17 @@
 spring:
   datasource:
-    url: jdbc:postgresql://localhost:5433/grid07db
+    url: jdbc:postgresql://localhost:5431/grid07db
     username: postgres
     password: postgres
-
+    driver-class-name: org.postgresql.Driver
   jpa:
     hibernate:
       ddl-auto: update
     show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
 
 server:
   port: 9090
@@ -21,20 +25,21 @@ server:
 
 
 
+
+
+
+
+
 # spring:
 #   datasource:
-#     url: jdbc:postgresql://localhost:5432/grid07_postgres
+#     url: jdbc:postgresql://localhost:5433/grid07db
 #     username: postgres
 #     password: postgres
-#     driver-class-name: org.postgresql.Driver
+
 #   jpa:
 #     hibernate:
 #       ddl-auto: update
 #     show-sql: true
-#   data:
-#     redis:
-#       host: localhost
-#       port: 6379
 
 # server:
-#   port: 8080
+#   port: 9090
