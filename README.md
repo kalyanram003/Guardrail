@@ -20,11 +20,22 @@ App runs on `http://localhost:9090`
 
 ## API Endpoints
 
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/api/posts` | Create a post |
-| POST | `/api/posts/{id}/comments` | Add a comment |
-| POST | `/api/posts/{id}/like` | Like a post |
+| Method | Endpoint | Body | Description |
+|---|---|---|---|
+| POST | `/api/posts` | `{"authorId": 1, "authorType": "USER", "content": "Hello World"}` | Create a post |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Bot reply", "depthLevel": 1}` | Add a bot comment |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 2, "authorType": "USER", "content": "Human reply", "depthLevel": 1}` | Add a human comment |
+| POST | `/api/posts/{postId}/like` | `{"userId": 1, "authorType": "USER"}` | Like a post |
+
+### Guardrail Test Cases
+
+| Method | Endpoint | Body | Expected |
+|---|---|---|---|
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Too deep", "depthLevel": 21}` | `429` — depth exceeded |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 1, "authorType": "BOT", "targetHumanId": 1, "content": "Second attempt", "depthLevel": 1}` | `429` — bot on cooldown (run twice) |
+| POST | `/api/posts/{postId}/comments` | `{"authorId": 2, "authorType": "BOT", "targetHumanId": 1, "content": "Bot 2 reply", "depthLevel": 1}` | `200` — different bot, no cooldown |
+
+Base URL: `http://localhost:9090`
 
 
 ---
